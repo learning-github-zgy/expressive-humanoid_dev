@@ -353,6 +353,7 @@ class MotionLib():
                    self._motions_local_key_body_pos, 
                    self._motion_difficulty, 
                    self.motion_description]
+        
         with open(pkl_file, 'wb') as outp:
             pickle.dump(objects, outp, pickle.HIGHEST_PROTOCOL)
         print("Saved to: ", pkl_file)

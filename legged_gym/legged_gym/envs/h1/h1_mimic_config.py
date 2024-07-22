@@ -57,8 +57,8 @@ class H1MimicCfg( LeggedRobotCfg ):
     class motion:
         motion_curriculum = True
         motion_type = "yaml"
-        motion_name = "motions_autogen_all_no_run_jump.yaml"
-
+        # motion_name = "motions_autogen_all_no_run_jump.yaml"
+        motion_name = "motions_autogen_all.yaml"
         global_keybody = False
         global_keybody_reset_time = 2
 

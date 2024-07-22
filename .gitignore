@@ -5,3 +5,10 @@ isaacgym*
 *__pycache__*
 fbx/
 **/__pycache__/
+
+*.fbx
+*.zip
+fbxpythonsdk/
+fbx_lib_py37/
+*.zip
+install_fbx.py

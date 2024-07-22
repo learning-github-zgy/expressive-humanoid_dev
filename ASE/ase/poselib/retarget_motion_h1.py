@@ -208,8 +208,8 @@ def project_joints(motion):
 
 def main():
     # load retarget config
-    motion_name = str(sys.argv[1])
-
+    # motion_name = str(sys.argv[1])
+    motion_name = "01_05"
     retarget_data_path = "data/configs/retarget_cmu_to_h1.json"
     with open(retarget_data_path) as f:
         retarget_data = json.load(f)

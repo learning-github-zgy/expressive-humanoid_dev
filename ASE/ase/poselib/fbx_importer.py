@@ -35,8 +35,8 @@ from poselib.visualization.common import plot_skeleton_state, plot_skeleton_moti
 import sys
 
 # source fbx file path
-file_name = sys.argv[1]
-fbx_file = f"data/fbx/{file_name}.fbx"  # cmu_fbx_all
+file_name = "01_01"
+fbx_file = f"data/cmu_fbx_all/{file_name}.fbx"  # cmu_fbx_all
 
 # import fbx file - make sure to provide a valid joint name for root_joint
 motion = SkeletonMotion.from_fbx(

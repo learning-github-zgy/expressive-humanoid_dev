@@ -35,7 +35,7 @@
 # import sys
 # from tqdm import tqdm
 
-# source fbx file path
+# # source fbx file path
 # all_fbx_path = "data/cmu_fbx_all/"
 # all_fbx_files = os.listdir(all_fbx_path)
 # all_fbx_files.sort()
@@ -48,7 +48,7 @@
 #             fps=60
 #         )
 #         motion.to_file(f"data/npy/{fbx_file[:-4]}.npy")
-
+# sys.exit()
 import os
 import multiprocessing
 from tqdm import tqdm
@@ -64,6 +64,7 @@ def process_file(i, fbx_file, all_fbx_path):
                 fps=60
             )
             motion.to_file(f"data/npy/{fbx_file[:-4]}.npy")
+            # print("noene")
     except:
         print(f"Error in {fbx_file}")
 
@@ -82,14 +83,19 @@ def main():
         all_fbx_filtered.append(fbx)
     all_fbx_filtered.sort()
     print(len(all_fbx_filtered))
+    # print(all_fbx_filtered[1])
     
     # Number of processes
     n_workers = multiprocessing.cpu_count()
-
+    # n_workers = 1
     # Create a pool of worker processes
     with multiprocessing.Pool(n_workers) as pool:
         # Using starmap to pass multiple arguments to the process_file function
         list(tqdm(pool.starmap(process_file, [(i, fbx_file, all_fbx_path) for i, fbx_file in enumerate(all_fbx_filtered)]), total=len(all_fbx_files)))
+
+    # for i in tqdm(range(len(all_fbx_filtered))):
+    #     process_file(i, all_fbx_filtered[i], all_fbx_path)
+
 
 if __name__ == "__main__":
     main()
