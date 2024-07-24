@@ -32,7 +32,7 @@ class H1MimicViewMotion(H1MimicEval):
         
     def post_physics_step(self):
         super().post_physics_step()
-        if hasattr(self, 'motion_frame'):
+        if hasattr(self, 'motion_frame'): # 检查self是否有这个属性
             # print(f"frame {self.motion_frame.item()}/{self.total_frames}")
             self._motion_sync()
             done_percentage = (self.motion_frame.float().sum() / self.total_frames.float().sum()).item()
