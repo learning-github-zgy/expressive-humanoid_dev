@@ -206,10 +206,12 @@ def project_joints(motion):
 
 def main():
     # load retarget config
-    retarget_data_path = "data/configs/retarget_moveone_to_h1.json"
+    # retarget_data_path = "data/configs/retarget_moveone_to_h1.json"
+    retarget_data_path = "data/configs/retarget_cmu_to_h1_one.json"
     with open(retarget_data_path) as f:
         retarget_data = json.load(f)
     # load and visualize t-pose files
+    VISUALIZE =True
     source_tpose = SkeletonState.from_file(retarget_data["source_tpose"])
     if VISUALIZE:
         print("source_tpose: ", source_tpose)
@@ -240,7 +242,7 @@ def main():
       rotation_to_target_skeleton=rotation_to_target_skeleton,
       scale_to_target_skeleton=retarget_data["scale"]
     )
-    print("target_motion: ", target_motion)
+    print("=======first target_motion=======")
     plot_skeleton_motion_interactive(target_motion)
 
     # keep frames between [trim_frame_beg, trim_frame_end - 1]
@@ -278,9 +280,10 @@ def main():
     target_motion = SkeletonMotion.from_skeleton_state(new_sk_state, fps=target_motion.fps)
 
     # save retargeted motion
-    target_motion.to_file(retarget_data["target_motion_path"])
+    # target_motion.to_file(retarget_data["target_motion_path"])
 
     # visualize retargeted motion
+    print("=======final retarget motion=======")
     plot_skeleton_motion_interactive(target_motion)
     
     return

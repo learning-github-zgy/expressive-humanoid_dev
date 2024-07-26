@@ -525,6 +525,7 @@ class LeggedRobot(BaseTask):
 
     def _process_rigid_body_props(self, props, env_id):
         # No need to use tensors as only called upon env creation
+        # 随机化机器人质量和质心，用于测试在不同负载下的稳定性
         if self.cfg.domain_rand.randomize_base_mass:
             rng_mass = self.cfg.domain_rand.added_mass_range
             rand_mass = np.random.uniform(rng_mass[0], rng_mass[1], size=(1, ))

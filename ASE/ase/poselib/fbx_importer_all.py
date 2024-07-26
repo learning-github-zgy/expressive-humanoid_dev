@@ -63,8 +63,8 @@ def process_file(i, fbx_file, all_fbx_path):
                 root_joint="Hips",
                 fps=60
             )
-            motion.to_file(f"data/npy/{fbx_file[:-4]}.npy")
-            # print("noene")
+            # motion.to_file(f"data/npy/{fbx_file[:-4]}.npy")
+            print("process——file")
     except:
         print(f"Error in {fbx_file}")
 

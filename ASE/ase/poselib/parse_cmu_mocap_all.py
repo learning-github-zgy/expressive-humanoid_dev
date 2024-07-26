@@ -7,7 +7,7 @@ path = "./data/configs/"
 def find_entries(word, column):
     subset = column[column.str.contains(word, na=False, case=False)]
     num_entries = len(subset)
-    num_unique_entries = subset.nunique()
+    num_unique_entries = subset.nunique() #　计算这个子集下不重复的条目
     indices = subset.index.tolist()
     unique_entries = subset.unique()
     print(f"Found {num_entries} entries containing '{word}', {num_unique_entries} unique entries.")
@@ -48,7 +48,7 @@ target_words = ["walk", "navigate", "basketball", "dance", "punch", "fight", "pu
 # target_words = ["walk", "navigate"]
 target_results = []
 for word in target_words:
-    target_results.append(find_entries(word, description_column))
+    target_results.append(find_entries(word, description_column)) # 查找包含关键词的数据
 
 print("\n Searching for forbidden words:")
 fbd_indices = []
@@ -70,16 +70,18 @@ for i, result in enumerate(target_results):
     motion_ids = motion_id_column[filtered_indices]
     indices_all.extend(filtered_indices)
     
+    # 为每个单独的动作生成动捕数据文件
     if target_words[i] in ["walk", "dance", "basketball", "punch"]:
         save_yaml(motion_ids, filtered_entries.tolist(), target_words[i])
 
 indices_all_unique = list(set(indices_all))
 motion_ids_all_unique = motion_id_column[indices_all_unique]
+# 生成没有跑和跳的动捕数据文件
 save_yaml(motion_ids_all_unique, description_column[indices_all_unique].tolist(), "all_no_run_jump")
 
 
 # exit()
-
+# 以下是将文本数据可视化，通过对动捕数据的描述文件信息进行聚类，可视化训练的数据之间的相关性
 text_all = description_column[indices_all_unique].tolist()
 from sentence_transformers import SentenceTransformer
 

@@ -461,7 +461,7 @@ class MotionLib():
             body_id = body_ids[j]
             joint_offset = dof_offsets[j]
             joint_size = dof_offsets[j + 1] - joint_offset
-
+            # 加载的H1模型是没有将hip的三个关节合并起来的，但是加载的动捕数据中是合并起来的，所以在这里进行了处理，将三个关节的旋转用指数表示法赋值给19个关节的H1
             if (joint_size == 3):
                 joint_q = local_rot[:, body_id]
                 joint_exp_map = torch_utils.quat_to_exp_map(joint_q)

@@ -56,7 +56,7 @@ print("*"*60)
 
 print("motion: ", motion)
 # save motion in npy format
-motion.to_file(fbx_file.replace("/fbx/", "/npy/").replace(".fbx", ".npy"))
+motion.to_file(fbx_file.replace("/fbx/", "/npy/").replace(".fbx", ".npy"))# 第一个是改路径，第二十是改后缀名字。
 
 # visualize motion
 # import pdb; pdb.set_trace()
